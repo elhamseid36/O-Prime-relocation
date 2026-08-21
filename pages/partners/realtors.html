@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtor Partnership Program | O-Prime Relocation</title>
+    <meta name="description" content="Partner with O-Prime Relocation. We provide priority booking, exceptional service, and dedicated coordination for your real estate clients.">
+    
+    <link rel="canonical" href="https://[YOUR_DOMAIN].com/pages/partners/realtors.html">
+    <link rel="stylesheet" href="../../css/style.css">
+    
+    <style>
+        .partner-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .partner-form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../../index.html">O-Prime Relocation</a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="../moving.html">Moving</a></li>
+                    <li><a href="../services.html">Services</a></li>
+                    <li><a href="../locations.html">Locations</a></li>
+                    <li><a href="../reviews.html">Reviews</a></li>
+                    <li><a href="../partners/realtors.html" style="color: var(--secondary);">Partners</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:+16475633525" class="btn btn-outline" data-track="phone-click">Call Now</a>
+                <a href="../quote.html" class="btn btn-primary">Get a Free Quote</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-bg text-center" style="background-image: url('../../assets/images/[O-PRIME-REALTORS-HERO-BG].jpg'); padding: 8rem 0;">
+            <div class="container" style="max-width: 800px;">
+                <h1>A Moving Partner Your Clients Can Trust</h1>
+                <p>Enhance your client experience by referring them to a premium, organized, and reliable GTA moving service.</p>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container partner-form-grid">
+                
+                <!-- Benefits Side -->
+                <div>
+                    <h2>Why Partner with O-Prime?</h2>
+                    <p style="margin-bottom: 2rem;">We understand that the moving company you recommend is an extension of your own brand. We treat your clients with the utmost professionalism.</p>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--secondary);">White-Glove Communication</h4>
+                        <p style="font-size: 0.9rem;">From the first call to the final box, we keep your clients informed and relaxed.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--secondary);">Priority Scheduling</h4>
+                        <p style="font-size: 0.9rem;">We offer flexible, priority scheduling options for clients referred by our preferred real estate partners.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--secondary);">Fully Insured Operations</h4>
+                        <p style="font-size: 0.9rem;">Complete peace of mind for high-value properties and belongings.</p>
+                    </div>
+                </div>
+
+                <!-- Referral Form -->
+                <!-- Referral Form -->
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">Submit a Client Referral</h3>
+                    
+                    <!-- Updated Form for Netlify -->
+                    <form id="realtor-referral-form" name="realtor-referral" method="POST" data-netlify="true">
+                        <!-- Required by Netlify for JS submissions -->
+                        <input type="hidden" name="form-name" value="realtor-referral" />
+                        
+                        <h4 style="font-size: 0.9rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1rem;">Realtor Information</h4>
+                        <div class="form-group">
+                            <input type="text" name="realtor_name" placeholder="Your Name" required>
+                        </div>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <input type="text" name="brokerage" placeholder="Brokerage" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="realtor_email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size: 0.9rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1rem; margin-top: 1rem;">Client Information</h4>
+                        <div class="form-group">
+                            <input type="text" name="client_name" placeholder="Client Name" required>
+                        </div>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <input type="tel" name="client_phone" placeholder="Client Phone" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="client_email" placeholder="Client Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="notes" rows="3" style="width: 100%; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.875rem;" placeholder="Estimated closing date, origin/destination cities, or special notes..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Referral to O-Prime</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="referral-success" class="hidden text-center" style="display: none; padding: 2rem 0;">
+                        <h3 style="color: var(--success);">Referral Received</h3>
+                        <p>Thank you. Our coordination team will reach out to your client shortly and keep you updated.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Full Footer Adjusted for the /partners/ Subfolder -->
+    <footer class="main-footer">
+        <div class="container grid grid-4">
+            <div>
+                <h3 style="font-size: 1.5rem;">O-Prime Relocation</h3>
+                <p style="color: #A0AEC0; margin-bottom: 1rem;">Professional Moving & Relocation Services Across the GTA.</p>
+                <a href="tel:+16475633525" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">+1 (647) 563-3525</a>
+                <a href="mailto:info@oprimerelocation.com">info@oprimerelocation.com</a>
+            </div>
+            
+            <div class="footer-links">
+                <h4 style="color: var(--bg-main);">Services</h4>
+                <ul>
+                    <li><a href="../moving.html">House Moving</a></li>
+                    <li><a href="../services/condo-moving.html">Condo Moving</a></li>
+                    <li><a href="../commercial-moving.html">Commercial Moving</a></li>
+                    <li><a href="../packing.html">Packing Services</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4 style="color: var(--bg-main);">Company</h4>
+                <ul>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li><a href="../reviews.html">Customer Reviews</a></li>
+                    <li><a href="../partners/realtors.html">Partner Program</a></li>
+                    <li><a href="../contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 style="color: var(--bg-main);">Ready to move?</h4>
+                <p style="color: #A0AEC0; margin-bottom: 1rem; font-size: 0.9rem;">Contact our coordination team to start planning your relocation.</p>
+                <a href="../quote.html" class="btn btn-primary" style="width: 100%;">Get a Free Quote</a>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom text-center">
+            <p>&copy; 2026 O-Prime Relocation. All Rights Reserved.</p>
+            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+                <a href="../privacy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inline Script for Netlify Referral Form Submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('realtor-referral-form');
+            const success = document.getElementById('referral-success');
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Track Referral Event via Analytics Architecture
+                    if (window.OPrimeAnalytics) {
+                        window.OPrimeAnalytics.trackEvent('partner_referral_completed', { partner_type: 'Realtor' });
+                    }
+
+                    // Collect data
+                    const formData = new FormData(form);
+                    
+                    // Send to Netlify via AJAX
+                    fetch("/", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(() => {
+                        // Hide form and show success message
+                        form.style.display = 'none';
+                        success.style.display = 'block';
+                    })
+                    .catch((error) => console.error("Netlify form submission error:", error));
+                });
+            }
+        });
+    </script>
+    <script src="../../js/analytics.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
