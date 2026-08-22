@@ -1,5 +1,5 @@
 /* ==================================================
-   O-PRIME RELOCATION - COST ESTIMATOR LOGIC
+   O-PRIME RELOCATION - EXPANDED COST ESTIMATOR LOGIC
    ================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,23 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!calculatorForm) return;
 
-    // Pricing Logic Variables (Easily adjustable for business changes)
+    // Advanced Pricing Model incorporating industry standards
     const PRICING_MODEL = {
-        baseRate: 350, // Base truck & travel fee
-        sizeMultiplier: {
-            'studio': 1.0,   // ~ 3-4 hours
-            '2bed': 1.6,     // ~ 5-6 hours
-            '3bed': 2.3,     // ~ 7-8 hours
-            '4bed': 3.2      // ~ 9-11 hours
+        hourlyRates: {
+            '2': 140, // 2 movers per hour (CAD)
+            '3': 185, // 3 movers per hour
+            '4': 240  // 4 movers per hour
+        },
+        estimatedHours: {
+            'studio': 3.5,
+            '2bed': 5.5,
+            '3bed': 7.5,
+            '4bed': 10.0
         },
         distanceMultiplier: {
-            'local': 1.0,    // Standard GTA
-            'long': 1.5      // Outside GTA boundaries
+            'local': 1.0,
+            'long': 1.4
         },
-        variance: 0.3 // 30% range for unforeseen variables (stairs, heavy items)
+        accessSurcharge: {
+            'easy': 0,
+            'moderate': 75,
+            'difficult': 150
+        },
+        addOnCost: {
+            'none': 0,
+            'packing': 350,
+            'assembly': 120
+        },
+        variance: 0.2 // 20% estimated range buffer
     };
 
-    // Currency Formatter (Canadian Dollars)
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-CA', { 
             style: 'currency', 
@@ -38,40 +51,43 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const propertySize = document.getElementById('property-size').value;
+        const crewSize = document.getElementById('crew-size').value;
         const moveType = document.getElementById('move-type').value;
+        const accessDifficulty = document.getElementById('access-difficulty').value;
+        const addOnService = document.getElementById('add-on-service').value;
 
-        // Validation
-        if (!propertySize || !moveType) return;
+        if (!propertySize || !crewSize || !moveType) return;
 
-        // Track that a user engaged with the calculator
+        // Analytics tracking
         if (window.OPrimeAnalytics) {
             window.OPrimeAnalytics.trackEvent('calculator_completed', {
                 property_size: propertySize,
-                move_type: moveType
+                crew_size: crewSize,
+                move_type: moveType,
+                add_on: addOnService
             });
         }
 
-        // Calculate Estimate
-        const lowEnd = PRICING_MODEL.baseRate * 
-                       PRICING_MODEL.sizeMultiplier[propertySize] * 
-                       PRICING_MODEL.distanceMultiplier[moveType];
-                       
-        const highEnd = lowEnd + (lowEnd * PRICING_MODEL.variance);
+        // Calculation: (Hourly Rate * Hours) factored by distance + stairs/access + add-ons
+        const hourlyRate = PRICING_MODEL.hourlyRates[crewSize];
+        const baseHours = PRICING_MODEL.estimatedHours[propertySize];
+        
+        let subtotal = (hourlyRate * baseHours) * PRICING_MODEL.distanceMultiplier[moveType];
+        subtotal += PRICING_MODEL.accessSurcharge[accessDifficulty];
+        subtotal += PRICING_MODEL.addOnCost[addOnService];
+
+        const lowEnd = Math.round(subtotal);
+        const highEnd = Math.round(subtotal + (subtotal * PRICING_MODEL.variance));
 
         // Display Results
         priceOutput.textContent = `${formatCurrency(lowEnd)} - ${formatCurrency(highEnd)}`;
-        
-        // Show the result box with a fade-in effect
+
         resultBox.style.display = 'block';
         resultBox.style.opacity = '0';
-        
-        // Trigger reflow
         void resultBox.offsetWidth; 
-        
         resultBox.style.transition = 'opacity 0.5s ease';
         resultBox.style.opacity = '1';
 
-        // Scroll slightly to ensure it's in view
         resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 });

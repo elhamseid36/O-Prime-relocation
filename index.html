@@ -47,15 +47,40 @@
     <header class="main-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html">O-Prime Relocation</a>
-            </div>
+    <a href="../index.html" class="brand-logo-container">
+        <!-- Exact SVG match of the O-Prime truck logo -->
+        <svg class="stylish-logo-emblem" width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Golden 'O' Ring -->
+            <path d="M 50 8 A 42 42 0 1 1 49.9 8 Z" fill="none" stroke="url(#goldGradient)" stroke-width="15"/>
+            <!-- Highway / Roadway cuts through the O -->
+            <path d="M 22 68 Q 50 38 78 68" fill="none" stroke="#1A365D" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 30 78 Q 50 48 70 78" fill="none" stroke="#D4AF37" stroke-width="4" stroke-linecap="round"/>
+            <!-- Gradient definition for rich gold look -->
+            <defs>
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F6E05E" />
+                    <stop offset="50%" stop-color="#D4AF37" />
+                    <stop offset="100%" stop-color="#975A16" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <span class="brand-title">
+            <span class="letter-o">O</span>-Prime Relocation
+        </span>
+
+        <!-- Animated moving truck entering the O -->
+        <div class="anim-truck">🚚</div>
+    </a>
+</div>
          <nav class="desktop-nav">
                 <ul>
                     <li><a href="pages/moving.html">Moving</a></li>
                     <li><a href="pages/services.html">Services</a></li>
                     <li><a href="pages/locations.html">Locations</a></li>
-                    <li><a href="pages/reviews.html">Reviews</a></li>
                     <li><a href="pages/partners/realtors.html">Partners</a></li>
+                    <li><a href="pages/reviews.html">Reviews</a></li>
+                    
                 </ul>
             </nav>
             
@@ -97,7 +122,7 @@
                 </div>
                 <div class="hero-image">
                     <!-- Placeholder: Ensure exact dimensions are updated when real image is added -->
-                    <img src="images/1000069117.png" alt="O-Prime Relocation professional moving crew carefully loading furniture in the GTA" width="600" height="400" style="background-color: #E2E8F0; border-radius: 6px; min-height: 400px; width: 100%;">
+                    <img id="rotating-hero-img" src="images/file_0000000064c881f5bbda4752afd413af.png" alt="O-Prime Relocation professional moving crew carefully loading furniture in the GTA" width="600" height="400" style="background-color: #E2E8F0; border-radius: 6px; min-height: 400px; width: 100%;">
                 </div>
             </div>
         </section>
@@ -164,49 +189,80 @@
         </section>
 
         <!-- Calculator Section -->
-        <section class="section-padding bg-light">
-            <div class="container grid grid-2 align-center">
-                <div>
-                    <h2>Moving Cost Calculator</h2>
-                    <p>Get an instant estimated range for your GTA relocation. For a finalized, accurate quote, our coordination team will review your specific requirements.</p>
-                    <ul style="margin-top: 1.5rem; margin-left: 1.5rem; line-height: 2;">
-                        <li>No hidden fees</li>
-                        <li>Transparent hourly & flat rates available</li>
-                        <li>Detailed breakdown provided upon finalized quote</li>
-                    </ul>
+<section class="section-padding bg-light">
+    <div class="container grid grid-2 align-center">
+        <div>
+            <h2>Moving Cost Calculator</h2>
+            <p>Get an instant estimated range for your GTA relocation based on property size, crew requirements, and logistics. For a finalized, accurate quote, our coordination team will review your specific details.</p>
+            <ul style="margin-top: 1.5rem; margin-left: 1.5rem; line-height: 2;">
+                <li>No hidden fees & transparent hourly rates</li>
+                <li>Adjusted for crew size and labor time</li>
+                <li>Accounts for stairs, elevators, and packing add-ons</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <form id="calculator-form">
+                <div class="form-group">
+                    <label for="property-size">Property Size *</label>
+                    <select id="property-size" required>
+                        <option value="">Select size...</option>
+                        <option value="studio">Studio / 1 Bedroom</option>
+                        <option value="2bed">2 Bedrooms</option>
+                        <option value="3bed">3 Bedrooms</option>
+                        <option value="4bed">4+ Bedrooms</option>
+                    </select>
                 </div>
-                
-                <div class="card">
-                    <form id="calculator-form">
-                        <div class="form-group">
-                            <label for="property-size">Property Size</label>
-                            <select id="property-size" required>
-                                <option value="">Select size...</option>
-                                <option value="studio">Studio / 1 Bedroom</option>
-                                <option value="2bed">2 Bedrooms</option>
-                                <option value="3bed">3 Bedrooms</option>
-                                <option value="4bed">4+ Bedrooms</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="move-type">Distance</label>
-                            <select id="move-type" required>
-                                <option value="local">Local GTA (Under 50km)</option>
-                                <option value="long">Long Distance (50km+)</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimated Range</button>
-                    </form>
-                    
-                    <!-- Result Box (Hidden by default, controlled via JS) -->
-                    <div id="calculator-result" style="display: none; margin-top: 1.5rem; padding: 1rem; background: var(--bg-light); border-left: 4px solid var(--secondary);">
-                        <h4 style="margin-bottom: 0.5rem;">Estimated Range:</h4>
-                        <p id="calculator-price" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);"></p>
-                        <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">Estimated range — final pricing may require additional information.</small>
+
+                <div class="form-group">
+                    <label for="crew-size">Crew Size (Movers) *</label>
+                    <select id="crew-size" required>
+                        <option value="2">2 Movers & 1 Truck (Standard Studio/1-2 Bed)</option>
+                        <option value="3">3 Movers & 1 Truck (Recommended for 2-3 Bed)</option>
+                        <option value="4">4 Movers & 2 Trucks (Large 3-4+ Bed Homes)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="form-group">
+                        <label for="move-type">Distance</label>
+                        <select id="move-type" required>
+                            <option value="local">Local GTA (Under 50km)</option>
+                            <option value="long">Long Distance (50km+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="access-difficulty">Access / Stairs</label>
+                        <select id="access-difficulty">
+                            <option value="easy">Ground Floor / Elevator</option>
+                            <option value="moderate">1 - 2 Flights of Stairs</option>
+                            <option value="difficult">3+ Flights / Long Walk</option>
+                        </select>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="add-on-service">Additional Services</label>
+                    <select id="add-on-service">
+                        <option value="none">None (Moving Only)</option>
+                        <option value="packing">Full Packing Service Included</option>
+                        <option value="assembly">Heavy/Complex Furniture Assembly</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimated Range</button>
+            </form>
+
+            <!-- Result Box -->
+            <div id="calculator-result" style="display: none; margin-top: 1.5rem; padding: 1rem; background: var(--bg-light); border-left: 4px solid var(--secondary);">
+                <h4 style="margin-bottom: 0.5rem;">Estimated Range:</h4>
+                <p id="calculator-price" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);"></p>
+                <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">Estimated range based on hourly labor and logistics. Contact us for a finalized binding quote.</small>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+       
     </main>
 
     <!-- Footer -->
@@ -256,8 +312,9 @@
     </footer>
 
     <!-- JavaScript -->
-     <script src="js/analytics.js"></script>
-     <script src="js/main.js"></script> 
-     <script src="js/calculator.js"></script> 
+       <script src="js/analytics.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/calculator.js"></script>
+        <script src="../js/quote.js"></script>
 </body>
 </html>

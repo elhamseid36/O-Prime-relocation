@@ -461,3 +461,106 @@ input:focus, select:focus {
 .hero-bg p {
     color: #E2E8F0;
 }
+
+
+@keyframes floatUpDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px); /* Moves the image up by 12 pixels */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hero-image img {
+    animation: floatUpDown 4s ease-in-out infinite;
+}
+
+
+@keyframes floatUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+.hero-image img {
+    animation: floatUpDown 4s ease-in-out infinite;
+    transition: opacity 0.8s ease-in-out; /* Smooth fade effect when changing images */
+}
+
+
+
+.brand-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--primary, #1A365D);
+    position: relative;
+    overflow: hidden; /* Keeps the truck sliding in smoothly */
+    padding: 6px 4px;
+}
+
+/* Stylish and smooth continuous rotation for the emblem */
+.stylish-logo-emblem {
+    animation: smoothLogoSpin 12s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes smoothLogoSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.brand-title {
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.5px;
+}
+
+/* Truck animation: drives in from left, parks inside the 'O', then drives away */
+.anim-truck {
+    position: absolute;
+    left: -45px;
+    top: 4px;
+    font-size: 1.15rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    animation: truckEnterO 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes truckEnterO {
+    0% {
+        left: -45px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    /* Parks precisely over the letter 'O' */
+    35% {
+        left: 2px;
+        opacity: 1;
+        transform: scale(1);
+    }
+    /* Holds position inside the 'O' briefly */
+    65% {
+        left: 2px;
+        opacity: 1;
+        transform: scale(1);
+    }
+    /* Accelerates forward and exits */
+    85% {
+        left: 70px;
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        left: -45px;
+        opacity: 0;
+    }
+}
